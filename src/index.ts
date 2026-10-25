@@ -9,6 +9,7 @@ import { ListmonkClient } from "./listmonk.js";
 import { registerSystemTools } from "./tools/system.js";
 import { registerListTools } from "./tools/lists.js";
 import { registerSubscriberTools } from "./tools/subscribers.js";
+import { registerCampaignTools } from "./tools/campaigns.js";
 
 export const SERVER_NAME = "listmonk-mcp";
 export const SERVER_VERSION = "0.1.0";
@@ -16,7 +17,7 @@ export const SERVER_VERSION = "0.1.0";
 export function buildServer(cfg: Config): { server: McpServer; registered: number } {
   const lm = new ListmonkClient(cfg);
   const server = new McpServer({ name: SERVER_NAME, version: SERVER_VERSION });
-  const registered = registerSystemTools(server, cfg, lm) + registerListTools(server, cfg, lm) + registerSubscriberTools(server, cfg, lm);
+  const registered = registerSystemTools(server, cfg, lm) + registerListTools(server, cfg, lm) + registerSubscriberTools(server, cfg, lm) + registerCampaignTools(server, cfg, lm);
   return { server, registered };
 }
 
