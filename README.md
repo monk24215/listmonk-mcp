@@ -2,7 +2,7 @@
 
 MCP server for self-hosted Listmonk. Lists, subscribers, campaigns, templates, bounces and transactional email as MCP tools.
 
-Status: in development. Phase 1 (system and lists tools) is complete and tested against Listmonk v6.1.0.
+Status: Phase 1 tools are implemented and tested against Listmonk v6.1.0 (selftest, read tools, subscriber write round-trip, read-only mode).
 
 ## Requirements
 
@@ -34,6 +34,15 @@ npm run selftest       # verifies URL, credentials and permissions before you re
 
 - System: listmonk_status, listmonk_dashboard_counts, listmonk_logs, listmonk_settings_get (secrets redacted), listmonk_smtp_test
 - Lists: lists_list, list_get, list_create, list_update, list_delete
+- Subscribers: subscribers_search, subscriber_get, subscriber_create, subscriber_update, subscribers_lists_change, subscriber_delete
+- Campaigns: campaigns_search, campaign_get, campaign_create, campaign_update, campaign_set_status, campaign_test_send, campaign_delete
+- Templates: templates_list, template_get, template_create, template_update, template_delete
+- Bounces: bounces_search, bounce_get, bounce_delete
+- Transactional: tx_send
+
+Read-only mode registers 14 tools (all read tools). Read-write registers 32.
+
+Note: campaign_set_status with "running" sends email to every recipient immediately.
 
 The full planned set is in TOOL-SPEC.md.
 
